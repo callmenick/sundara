@@ -64,8 +64,11 @@ sundara-web/
 │   ├── app/                        # Next.js App Router
 │   │   ├── (public)/               # Public marketing pages
 │   │   ├── (account)/              # Customer account
-│   │   ├── (admin)/                # Admin dashboard
+│   │   ├── (admin)/                # Admin dashboard (with sidebar)
+│   │   ├── (admin-auth)/           # Admin auth pages (standalone)
 │   │   └── api/                    # API routes
+│   │
+│   ├── proxy.ts                    # Next.js 16 proxy (route protection)
 │   │
 │   ├── lib/                        # Infrastructure/utilities
 │   │   ├── supabase/               # Supabase clients
@@ -92,22 +95,24 @@ sundara-web/
 
 **Strict conventions - follow consistently:**
 
-| Type              | Convention                    | Example                  |
-| ----------------- | ----------------------------- | ------------------------ |
-| React components  | `kebab-case.tsx`              | `artist-card.tsx`        |
-| Server components | `kebab-case.tsx`              | `artist-list.tsx`        |
-| Client components | `kebab-case.client.tsx`       | `artist-form.client.tsx` |
-| Test files        | `kebab-case.test.ts(x)`       | `artist-card.test.tsx`   |
-| Utilities         | `kebab-case.ts`               | `format-price.ts`        |
-| Types             | `kebab-case.ts` or `types.ts` | `types.ts`               |
-| Hooks             | `use-[name].ts`               | `use-edition.ts`         |
-| Server actions    | `actions.ts`                  | `actions.ts`             |
-| Data queries      | `queries.ts`                  | `queries.ts`             |
-| Constants         | `constants.ts`                | `constants.ts`           |
-| Page files        | `page.tsx`                    | `page.tsx`               |
-| Layout files      | `layout.tsx`                  | `layout.tsx`             |
-| Loading states    | `loading.tsx`                 | `loading.tsx`            |
-| Error states      | `error.tsx`                   | `error.tsx`              |
+| Type               | Convention                    | Example                  |
+| ------------------ | ----------------------------- | ------------------------ |
+| React components   | `kebab-case.tsx`              | `artist-card.tsx`        |
+| Server components  | `kebab-case.tsx`              | `artist-list.tsx`        |
+| Client components  | `kebab-case.client.tsx`       | `artist-form.client.tsx` |
+| Test files         | `kebab-case.test.ts(x)`       | `artist-card.test.tsx`   |
+| Utilities          | `kebab-case.ts`               | `format-price.ts`        |
+| Types              | `kebab-case.ts` or `types.ts` | `types.ts`               |
+| Hooks              | `use-[name].ts`               | `use-edition.ts`         |
+| Server actions     | `actions.ts`                  | `actions.ts`             |
+| Data queries       | `queries.ts`                  | `queries.ts`             |
+| Constants          | `constants.ts`                | `constants.ts`           |
+| Page files         | `page.tsx`                    | `page.tsx`               |
+| Layout files       | `layout.tsx`                  | `layout.tsx`             |
+| Loading states     | `loading.tsx`                 | `loading.tsx`            |
+| Error states       | `error.tsx`                   | `error.tsx`              |
+| Not found          | `not-found.tsx`               | `not-found.tsx`          |
+| Proxy (Next.js 16) | `proxy.ts`                    | `proxy.ts`               |
 
 ## Testing
 
@@ -413,6 +418,13 @@ export async function createArtist(formData: FormData) {
 - Use Server Actions for mutations
 - Keep page components thin - delegate to domain modules
 
+### Next.js 16 Specifics
+
+- **Proxy replaces Middleware**: Use `proxy.ts` (not `middleware.ts`) for request interception
+- File location: `src/proxy.ts` when using `src/` directory
+- Export named `proxy` function: `export function proxy(request) { }`
+- See [Next.js Proxy docs](https://nextjs.org/docs/app/api-reference/file-conventions/proxy)
+
 ### Styling
 
 - Tailwind utility classes only
@@ -509,6 +521,7 @@ npm run test:e2e:ui         # Playwright with UI
 npm run db:push             # Push migrations
 npm run db:reset            # Reset database
 npm run db:types            # Generate types from schema
+npm run db:seed             # Create initial super_admin invite
 ```
 
 ## Auth Roles
