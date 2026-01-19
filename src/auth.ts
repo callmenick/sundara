@@ -73,16 +73,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (!user || !user.mfa_secret || !user.mfa_enabled) return null
 
-        let secret: string
-        try {
-          secret = decryptSecret(user.mfa_secret)
-        } catch (err) {
-          console.error('MFA decrypt error:', err)
-          return null
-        }
-
+        const secret = decryptSecret(user.mfa_secret)
         const isValid = await verifyTotp(secret, token)
-        console.log('MFA verify result:', { isValid, tokenLength: token.length })
 
         if (!isValid) return null
 
