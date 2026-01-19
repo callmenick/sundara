@@ -19,7 +19,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "db:types": "npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types/database.ts",
+    "db:types": "npx supabase gen types typescript --linked > src/types/database.ts",
     "db:push": "npx supabase db push",
     "db:reset": "npx supabase db reset",
     "prepare": "husky"
