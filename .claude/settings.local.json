@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__brave-search__brave_web_search",
+      "WebFetch(domain:supabase.com)",
+      "WebFetch(domain:authjs.dev)"
+    ]
+  }
+}
