@@ -6,7 +6,6 @@ import { updateSession } from '@/lib/supabase/middleware'
 const { auth } = NextAuth(authConfig)
 
 const publicAdminRoutes = ['/admin/login', '/admin/setup-account']
-
 const mfaPendingRoutes = ['/admin/verify-mfa', '/admin/setup-mfa']
 
 const roleRoutes: Record<string, string[]> = {
@@ -27,7 +26,7 @@ const roleRoutes: Record<string, string[]> = {
   super_admin: ['/admin'],
 }
 
-export default auth(async function middleware(request: NextRequest) {
+async function handleProxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (!pathname.startsWith('/admin')) {
@@ -76,7 +75,9 @@ export default auth(async function middleware(request: NextRequest) {
   }
 
   return NextResponse.next()
-})
+}
+
+export const proxy = auth(handleProxy)
 
 export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
