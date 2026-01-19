@@ -20,6 +20,7 @@ Custom website and ticketing platform for Sundara, a camping music festival in T
 | Payments  | Wam (TBD)                                         |
 | Email     | Resend                                            |
 | Testing   | Vitest + React Testing Library + MSW + Playwright |
+| Dates     | date-fns (all date/time operations)               |
 | Hosting   | Vercel                                            |
 
 ## Core Principles
@@ -54,9 +55,11 @@ sundara-web/
 │   │   ├── content/                # CMS content blocks
 │   │   └── admin-users/            # Admin authentication
 │   │
-│   ├── components/                 # Shared UI components
+│   ├── components/                 # UI components
 │   │   ├── ui/                     # shadcn/ui primitives
-│   │   └── shared/                 # App-wide shared components
+│   │   ├── header.tsx              # Site header
+│   │   ├── footer.tsx              # Site footer
+│   │   └── [component].tsx         # App-wide components
 │   │
 │   ├── app/                        # Next.js App Router
 │   │   ├── (public)/               # Public marketing pages
@@ -539,3 +542,4 @@ MFA required for all roles except `checkin`.
 - [Vitest](https://vitest.dev)
 - [Playwright](https://playwright.dev)
 - [MSW](https://mswjs.io)
+- [date-fns](https://date-fns.org)
