@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import type { AdminUser, AdminUserRow } from './types'
 
 function mapRowToAdminUser(row: AdminUserRow): AdminUser {
@@ -14,7 +14,7 @@ function mapRowToAdminUser(row: AdminUserRow): AdminUser {
 }
 
 export async function getAdminUserByEmail(email: string): Promise<AdminUserRow | null> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('admin_users')
     .select('*')
@@ -26,7 +26,7 @@ export async function getAdminUserByEmail(email: string): Promise<AdminUserRow |
 }
 
 export async function getAdminUserById(id: string): Promise<AdminUserRow | null> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase.from('admin_users').select('*').eq('id', id).single()
 
   if (error || !data) return null
@@ -34,7 +34,7 @@ export async function getAdminUserById(id: string): Promise<AdminUserRow | null>
 }
 
 export async function getAdminUserByInviteToken(token: string): Promise<AdminUserRow | null> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('admin_users')
     .select('*')
@@ -47,7 +47,7 @@ export async function getAdminUserByInviteToken(token: string): Promise<AdminUse
 }
 
 export async function getAllAdminUsers(): Promise<AdminUser[]> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('admin_users')
     .select('id, email, name, role, mfa_enabled, created_at, last_login_at')

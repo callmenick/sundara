@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 import crypto from 'crypto'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { hashPassword, validatePassword } from '@/lib/auth/password'
 import {
   encryptSecret,
@@ -36,7 +36,7 @@ export async function inviteAdmin(formData: FormData) {
   const inviteToken = crypto.randomBytes(32).toString('hex')
   const inviteExpiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase.from('admin_users').insert({
     email: email.toLowerCase(),
     role,
@@ -81,7 +81,7 @@ export async function setupAccount(formData: FormData) {
 
   const passwordHash = await hashPassword(password)
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase
     .from('admin_users')
     .update({
@@ -154,7 +154,7 @@ export async function verifyMfaSetup(formData: FormData) {
 
   const encryptedSecret = encryptSecret(secret)
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase
     .from('admin_users')
     .update({
@@ -171,7 +171,7 @@ export async function verifyMfaSetup(formData: FormData) {
 }
 
 export async function updateLastLogin(userId: string) {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   await supabase
     .from('admin_users')
     .update({ last_login_at: new Date().toISOString() })
