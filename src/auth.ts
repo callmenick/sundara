@@ -6,6 +6,7 @@ import { updateLastLogin } from '@/domains/admin-users/actions'
 import { verifyPassword } from '@/lib/auth/password'
 import { decryptSecret, verifyTotp, requiresMfa } from '@/lib/auth/mfa'
 import type { Role } from '@/types'
+import { authConfig } from './auth.config'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -18,6 +19,7 @@ const mfaSchema = z.object({
 })
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  ...authConfig,
   providers: [
     Credentials({
       id: 'credentials',
@@ -89,33 +91,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
-        token.email = user.email as string
-        token.name = user.name
-        token.role = user.role
-        token.mfaEnabled = user.mfaEnabled
-        token.mfaVerified = user.mfaVerified
-      }
-      return token
-    },
-    session({ session, token }) {
-      session.user.id = token.id as string
-      session.user.email = token.email as string
-      session.user.name = token.name as string | null
-      session.user.role = token.role as Role
-      session.user.mfaEnabled = token.mfaEnabled as boolean
-      session.user.mfaVerified = token.mfaVerified as boolean
-      return session
-    },
-  },
-  pages: {
-    signIn: '/admin/login',
-  },
-  session: {
-    strategy: 'jwt',
-    maxAge: 8 * 60 * 60,
-  },
 })

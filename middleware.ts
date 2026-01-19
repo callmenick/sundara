@@ -1,6 +1,9 @@
+import NextAuth from 'next-auth'
 import { type NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/auth'
+import { authConfig } from '@/auth.config'
 import { updateSession } from '@/lib/supabase/middleware'
+
+const { auth } = NextAuth(authConfig)
 
 const publicAdminRoutes = ['/admin/login', '/admin/setup-account']
 
@@ -24,7 +27,7 @@ const roleRoutes: Record<string, string[]> = {
   super_admin: ['/admin'],
 }
 
-export async function middleware(request: NextRequest) {
+export default auth(async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (!pathname.startsWith('/admin')) {
@@ -35,7 +38,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const session = await auth()
+  const session = request.auth
 
   if (!session?.user) {
     const loginUrl = new URL('/admin/login', request.url)
@@ -73,7 +76,7 @@ export async function middleware(request: NextRequest) {
   }
 
   return NextResponse.next()
-}
+})
 
 export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
