@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
+import { FESTIVAL } from '@/lib/constants'
 
 const navLinks = [
   { href: '/music', label: 'Music' },
@@ -21,8 +22,8 @@ export function Header() {
   return (
     <header className="bg-forest/90 fixed top-0 z-50 w-full backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-display text-sand text-2xl">
-          SUNDARA
+        <Link href="/" className="text-display text-sand text-2xl uppercase">
+          {FESTIVAL.name}
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -58,10 +59,10 @@ export function Header() {
               <div className="flex flex-col gap-6 pt-6">
                 <Link
                   href="/"
-                  className="text-display text-sand text-2xl"
+                  className="text-display text-sand text-2xl uppercase"
                   onClick={() => setOpen(false)}
                 >
-                  SUNDARA
+                  Sundara
                 </Link>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (

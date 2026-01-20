@@ -417,6 +417,15 @@ export async function createArtist(formData: FormData) {
 - Festival dates and info are centralized in `@/lib/constants.ts`
 - Currency: TTD (Trinidad & Tobago Dollar)
 
+### Content & SEO
+
+- SEO metadata and copy are centralized in `@/lib/seo.ts`
+- Use `FESTIVAL` from constants for dates, location, etc.
+- Use `SEO` for meta titles, descriptions, keywords
+- Use `COPY` for UI text that should stay consistent across the site
+- Use proper case "Sundara" in JSX, apply `uppercase` class for visual styling
+- Never hardcode uppercase text in HTML/JSX - use CSS text-transform
+
 ### TypeScript
 
 - Use strict mode (enabled in tsconfig)

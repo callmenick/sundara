@@ -1,5 +1,6 @@
 export const FESTIVAL = {
   name: 'Sundara',
+  tagline: 'Music & Camping Festival',
   year: 2026,
   edition: '2026',
   dates: {
@@ -10,6 +11,10 @@ export const FESTIVAL = {
     venue: 'Pueblo El Pao',
     area: 'Santa Cruz',
     country: 'Trinidad & Tobago',
+    shortName: 'Pueblo El Pao, Santa Cruz',
+    address: '5-6 El Perico Branch Rd',
+    fullAddress: '5-6 El Perico Branch Rd, Santa Cruz, Trinidad & Tobago',
+    googleMapsUrl: 'https://maps.app.goo.gl/c3c6DM2Eq1995gbK9',
   },
   formatted: {
     dateRange: '1st – 3rd May 2026',

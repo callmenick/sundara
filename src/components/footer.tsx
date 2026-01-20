@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { Instagram, Facebook, Youtube } from 'lucide-react'
+import { FESTIVAL } from '@/lib/constants'
+import { COPY } from '@/lib/seo'
 
 const festivalLinks = [
   { href: '/music', label: 'Music' },
@@ -31,13 +33,10 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="text-display text-sand text-2xl">
-              SUNDARA
+            <Link href="/" className="text-display text-sand text-2xl uppercase">
+              {FESTIVAL.name}
             </Link>
-            <p className="text-sand/70 mt-4 max-w-xs text-sm">
-              A weekend camping music festival in Trinidad & Tobago featuring LIVE and RAVE stages,
-              workshops, and community.
-            </p>
+            <p className="text-sand/70 mt-4 max-w-xs text-sm">{COPY.footer.description}</p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((link) => (
                 <a

@@ -10,11 +10,11 @@ export default function HomePage() {
       <section className="from-forest via-forest to-jungle relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-b px-4">
         <div className="relative z-10 flex flex-col items-center text-center">
           <p className="font-heading text-sand/80 text-lg tracking-wide sm:text-xl md:text-2xl">
-            A Camping Music Festival
+            {FESTIVAL.tagline}
           </p>
 
-          <h1 className="text-display text-sand text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
-            SUNDARA
+          <h1 className="text-display text-sand text-6xl uppercase sm:text-7xl md:text-8xl lg:text-9xl">
+            {FESTIVAL.name}
           </h1>
 
           <p className="font-heading text-lime mt-2 text-xl sm:text-2xl md:text-3xl">
