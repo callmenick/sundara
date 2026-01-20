@@ -118,3 +118,20 @@
   padding-top: var(--display-offset);
   line-height: 1;
 }
+
+/* Prose variant for forest-colored legal/content pages */
+.prose-forest {
+  --tw-prose-body: var(--forest);
+  --tw-prose-headings: var(--forest);
+  --tw-prose-lead: color-mix(in srgb, var(--forest) 80%, transparent);
+  --tw-prose-links: var(--jungle);
+  --tw-prose-bold: var(--forest);
+  --tw-prose-counters: var(--jungle);
+  --tw-prose-bullets: var(--jungle);
+  --tw-prose-hr: color-mix(in srgb, var(--forest) 20%, transparent);
+  --tw-prose-quotes: var(--forest);
+  --tw-prose-quote-borders: var(--lime);
+  --tw-prose-captions: color-mix(in srgb, var(--forest) 70%, transparent);
+  --tw-prose-th-borders: color-mix(in srgb, var(--forest) 30%, transparent);
+  --tw-prose-td-borders: color-mix(in srgb, var(--forest) 20%, transparent);
+}
