@@ -1,10 +1,23 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
+})
+
+const tanMaple = localFont({
+  src: '../../public/fonts/tan-maple.otf',
+  variable: '--font-tan-maple',
+  display: 'swap',
+})
+
+const girlishWaves = localFont({
+  src: '../../public/fonts/girlish-waves.otf',
+  variable: '--font-girlish-waves',
   display: 'swap',
 })
 
@@ -49,7 +62,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#18181b',
+  themeColor: '#005d41',
 }
 
 export default function RootLayout({
@@ -59,7 +72,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+      <body
+        className={`${inter.variable} ${tanMaple.variable} ${girlishWaves.variable} font-sans antialiased`}
+      >
+        {children}
+      </body>
     </html>
   )
 }

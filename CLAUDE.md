@@ -404,6 +404,12 @@ export async function createArtist(formData: FormData) {
 }
 ```
 
+### Imports
+
+- Always use `@/` path aliases for imports (e.g., `@/components/button`, `@/lib/utils`)
+- Never use relative `../` paths except where technically required (e.g., `next/font/local` src paths)
+- Group imports: external packages first, then `@/` imports, then relative imports (if any)
+
 ### TypeScript
 
 - Use strict mode (enabled in tsconfig)
@@ -545,6 +551,7 @@ MFA required for all roles except `checkin`.
 
 **Always check these first before implementing:**
 
+- [Brand Guidelines](./BRAND.md) - Colors, typography, visual identity
 - [Project Plan](./plans/sundara-project-plan.md)
 - [Next.js Docs](https://nextjs.org/docs)
 - [Supabase Docs](https://supabase.com/docs)
