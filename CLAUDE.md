@@ -410,6 +410,13 @@ export async function createArtist(formData: FormData) {
 - Never use relative `../` paths except where technically required (e.g., `next/font/local` src paths)
 - Group imports: external packages first, then `@/` imports, then relative imports (if any)
 
+### Dates & Localization
+
+- Date format: **day-month-year** (e.g., "1 May 2026", "01/05/2026")
+- Use date-fns for all date formatting with formats from `@/lib/constants`
+- Festival dates and info are centralized in `@/lib/constants.ts`
+- Currency: TTD (Trinidad & Tobago Dollar)
+
 ### TypeScript
 
 - Use strict mode (enabled in tsconfig)

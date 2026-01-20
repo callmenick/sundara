@@ -6,7 +6,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-tan-maple);
   --font-heading: var(--font-girlish-waves);
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 
@@ -105,4 +104,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/*
+ * Tan Maple display font utility.
+ * Includes metrics fix for unusual vertical overflow (glyphs extend above text box).
+ * Override --display-offset inline if needed: style={{ '--display-offset': '0.5em' }}
+ */
+@utility text-display {
+  font-family: var(--font-tan-maple);
+  --display-offset: 0.375em;
+  display: block;
+  padding-top: var(--display-offset);
+  line-height: 1;
 }

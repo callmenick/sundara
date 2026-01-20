@@ -16,7 +16,7 @@ Three fonts create a clear visual hierarchy:
 
 | Font              | CSS Variable           | Tailwind Class | Role                                              |
 | ----------------- | ---------------------- | -------------- | ------------------------------------------------- |
-| **Tan Maple**     | `--font-tan-maple`     | `font-display` | Brand wordmark, hero headlines, major page titles |
+| **Tan Maple**     | `--font-tan-maple`     | `text-display` | Brand wordmark, hero headlines, major page titles |
 | **Girlish Waves** | `--font-girlish-waves` | `font-heading` | Subheadings, taglines, section headers, countdown |
 | **Inter**         | `--font-inter`         | `font-sans`    | Body text, navigation, forms, UI elements         |
 
@@ -28,6 +28,7 @@ Three fonts create a clear visual hierarchy:
 - Use sparingly for maximum impact
 - Best at large sizes (48px+)
 - Perfect for: "SUNDARA" wordmark, hero text, major announcements
+- **Note:** `text-display` includes a metrics fix (padding-top) for vertical overflow. Override with `--display-offset` if needed.
 
 **Girlish Waves** (Heading)
 
@@ -47,8 +48,8 @@ Three fonts create a clear visual hierarchy:
 
 ```
 Display (Tan Maple):
-- Hero:     text-6xl md:text-8xl font-display    (SUNDARA wordmark)
-- Title:    text-4xl md:text-6xl font-display    (Major page titles)
+- Hero:     text-6xl md:text-8xl text-display    (SUNDARA wordmark)
+- Title:    text-4xl md:text-6xl text-display    (Major page titles)
 
 Heading (Girlish Waves):
 - H1:       text-3xl md:text-4xl font-heading    (Page headers)
@@ -67,7 +68,7 @@ Body (Inter):
 
 ```tsx
 // Hero section with brand wordmark
-<h1 className="font-display text-6xl md:text-8xl text-forest">
+<h1 className="text-display text-6xl md:text-8xl text-forest">
   SUNDARA
 </h1>
 
@@ -264,7 +265,6 @@ Use Tailwind's default spacing scale. Key values:
 
 ```tsx
 import { Music, Tent, Calendar } from 'lucide-react'
-
 ;<Music className="text-jungle size-5" />
 ```
 
@@ -296,7 +296,7 @@ Keep animations subtle and purposeful:
 ### Tailwind Classes
 
 ```
-Fonts:       font-display | font-heading | font-sans
+Fonts:       text-display | font-heading | font-sans
 Colors:      text-forest | text-jungle | text-lime | text-amber | text-sand
 Backgrounds: bg-forest | bg-jungle | bg-lime | bg-amber | bg-sand
 Semantic:    bg-primary | bg-secondary | bg-accent | bg-muted | bg-background
