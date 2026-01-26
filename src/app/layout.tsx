@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
+import { SEO } from '@/lib/seo'
 import './globals.css'
 
 const inter = Inter({
@@ -8,37 +10,37 @@ const inter = Inter({
   display: 'swap',
 })
 
+const tanMaple = localFont({
+  src: '../../public/fonts/tan-maple.otf',
+  variable: '--font-tan-maple',
+  display: 'swap',
+})
+
+const girlishWaves = localFont({
+  src: '../../public/fonts/girlish-waves.otf',
+  variable: '--font-girlish-waves',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: {
-    default: 'Sundara 2026 | A Camping Music Festival in Trinidad & Tobago',
-    template: '%s | Sundara',
+    default: SEO.home.title,
+    template: SEO.titleTemplate,
   },
-  description:
-    'Join us for Sundara 2026 - a weekend camping music festival featuring LIVE indie & rock and RAVE electronic music stages, workshops, and community in Trinidad & Tobago.',
-  keywords: [
-    'Sundara',
-    'music festival',
-    'Trinidad and Tobago',
-    'camping festival',
-    'indie rock',
-    'electronic music',
-    'LIVE stage',
-    'RAVE stage',
-  ],
-  authors: [{ name: 'Sundara' }],
+  description: SEO.home.description,
+  keywords: SEO.keywords,
+  authors: [{ name: SEO.siteName }],
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    siteName: 'Sundara',
-    title: 'Sundara 2026 | A Camping Music Festival in Trinidad & Tobago',
-    description:
-      'Join us for Sundara 2026 - a weekend camping music festival featuring LIVE indie & rock and RAVE electronic music stages, workshops, and community.',
+    type: SEO.openGraph.type,
+    locale: SEO.openGraph.locale,
+    siteName: SEO.siteName,
+    title: SEO.home.title,
+    description: SEO.home.description,
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Sundara 2026 | A Camping Music Festival in Trinidad & Tobago',
-    description:
-      'Join us for Sundara 2026 - a weekend camping music festival featuring LIVE indie & rock and RAVE electronic music stages.',
+    card: SEO.twitter.card,
+    title: SEO.home.title,
+    description: SEO.home.description,
   },
   robots: {
     index: true,
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#18181b',
+  themeColor: '#005d41',
 }
 
 export default function RootLayout({
@@ -59,7 +61,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+      <body
+        className={`${inter.variable} ${tanMaple.variable} ${girlishWaves.variable} font-sans antialiased`}
+      >
+        {children}
+      </body>
     </html>
   )
 }

@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { Instagram, Facebook, Youtube } from 'lucide-react'
+import { FESTIVAL } from '@/lib/constants'
+import { COPY } from '@/lib/seo'
 
 const festivalLinks = [
   { href: '/music', label: 'Music' },
@@ -27,17 +29,14 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-border bg-muted/30 border-t">
+    <footer className="bg-forest">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="text-xl font-bold tracking-tight">
-              SUNDARA
+            <Link href="/" className="text-display text-sand text-2xl uppercase">
+              {FESTIVAL.name}
             </Link>
-            <p className="text-muted-foreground mt-4 max-w-xs text-sm">
-              A weekend camping music festival in Trinidad & Tobago featuring LIVE and RAVE stages,
-              workshops, and community.
-            </p>
+            <p className="text-sand/70 mt-4 max-w-xs text-sm">{COPY.footer.description}</p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((link) => (
                 <a
@@ -45,23 +44,23 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sand/60 hover:text-amber transition-colors"
                   aria-label={link.label}
                 >
-                  <link.icon className="h-5 w-5" />
+                  <link.icon className="size-5" />
                 </a>
               ))}
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">Festival</h3>
+            <h3 className="font-heading text-lime text-base">Festival</h3>
             <ul className="mt-4 space-y-3">
               {festivalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                    className="text-sand/70 hover:text-sand text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -71,13 +70,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">Get Involved</h3>
+            <h3 className="font-heading text-lime text-base">Get Involved</h3>
             <ul className="mt-4 space-y-3">
               {involvedLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                    className="text-sand/70 hover:text-sand text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -86,7 +85,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                  className="text-sand/70 hover:text-sand text-sm transition-colors"
                 >
                   Contact
                 </Link>
@@ -95,13 +94,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold">Legal</h3>
+            <h3 className="font-heading text-lime text-base">Legal</h3>
             <ul className="mt-4 space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                    className="text-sand/70 hover:text-sand text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -111,8 +110,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-border mt-12 border-t pt-8">
-          <p className="text-muted-foreground text-center text-sm">
+        <div className="border-sand/20 mt-12 border-t pt-8">
+          <p className="text-sand/50 text-center text-sm">
             &copy; {new Date().getFullYear()} Sundara. All rights reserved.
           </p>
         </div>

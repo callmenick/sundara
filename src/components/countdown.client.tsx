@@ -37,12 +37,12 @@ function calculateTimeLeft(targetDate: Date): TimeLeft {
 function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm sm:h-20 sm:w-20 md:h-24 md:w-24">
-        <span className="text-2xl font-bold tabular-nums sm:text-3xl md:text-4xl">
+      <div className="border-sand/30 bg-sand/10 flex size-16 items-center justify-center rounded-xl border-2 backdrop-blur-sm sm:size-20 md:size-24">
+        <span className="font-heading text-sand text-3xl sm:text-4xl md:text-5xl">
           {value.toString().padStart(2, '0')}
         </span>
       </div>
-      <span className="mt-2 text-xs tracking-wider text-white/70 uppercase sm:text-sm">
+      <span className="font-heading text-amber mt-2 text-xs tracking-wider uppercase sm:text-sm">
         {label}
       </span>
     </div>
