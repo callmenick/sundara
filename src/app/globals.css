@@ -56,6 +56,9 @@
 :root {
   --radius: 0.625rem;
 
+  /* Layout */
+  --header-height: --spacing(16);
+
   /* Brand palette */
   --forest: #005d41;
   --jungle: #00855e;
@@ -100,9 +103,14 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-sand text-foreground;
   }
 }
 

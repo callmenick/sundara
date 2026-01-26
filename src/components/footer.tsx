@@ -29,7 +29,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-forest">
+    <footer className="bg-forest relative z-10">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
