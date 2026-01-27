@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { subscribe } from '@/domains/subscribers/actions'
@@ -23,7 +24,6 @@ export function NewsletterSignup() {
       return
     }
 
-    toast.success("You're on the list!")
     setStatus('success')
     form.reset()
   }
@@ -37,7 +37,8 @@ export function NewsletterSignup() {
         </p>
 
         {status === 'success' ? (
-          <div className="mt-8">
+          <div className="mt-8 flex items-center justify-center gap-2">
+            <CheckCircle className="text-jungle h-5 w-5" />
             <p className="text-jungle font-medium">You&apos;re on the list!</p>
           </div>
         ) : (
