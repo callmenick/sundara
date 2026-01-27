@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
+import { Toaster } from 'sonner'
 import { SEO } from '@/lib/seo'
 import './globals.css'
 
@@ -65,6 +66,7 @@ export default function RootLayout({
         className={`${inter.variable} ${tanMaple.variable} ${girlishWaves.variable} font-sans antialiased`}
       >
         {children}
+        <Toaster position="bottom-center" />
       </body>
     </html>
   )
