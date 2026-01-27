@@ -31,15 +31,15 @@ export function NewsletterSignup() {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="font-heading text-forest text-2xl sm:text-3xl">Stay in the Loop</h2>
-        <p className="text-forest/70 mt-4">
+        <h2 className="font-heading text-jungle text-2xl sm:text-3xl">Stay in the Loop</h2>
+        <p className="text-jungle/70 mt-4">
           Be the first to know when tickets drop, lineup announcements, and festival updates.
         </p>
 
         {status === 'success' ? (
-          <div className="mt-8 flex items-center justify-center gap-2">
+          <div className="bg-jungle/10 border-jungle/30 mt-8 flex items-center justify-center gap-2 rounded-md border p-4">
             <CheckCircle className="text-jungle h-5 w-5" />
-            <p className="text-jungle font-medium">You&apos;re on the list!</p>
+            <p className="text-jungle">You&apos;re on the list!</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -48,12 +48,12 @@ export function NewsletterSignup() {
               name="email"
               placeholder="Enter your email"
               required
-              className="border-forest/30 bg-forest/10 text-forest placeholder:text-forest/50 focus-visible:ring-forest/50 flex-1"
+              className="border-jungle/30 bg-jungle/10 text-jungle placeholder:text-jungle/50 focus-visible:ring-jungle/50 flex-1"
             />
             <Button
               type="submit"
               disabled={status === 'loading'}
-              className="bg-forest text-sand hover:bg-forest/90"
+              className="bg-jungle text-sand hover:bg-jungle/90"
             >
               {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
             </Button>
