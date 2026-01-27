@@ -24,8 +24,24 @@ const images = [
 
 export function HomeGallery() {
   return (
-    <section className="bg-forest/90 relative z-20 py-24 backdrop-blur-sm">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-forest/90 relative z-20 overflow-hidden py-24 backdrop-blur-sm">
+      <Image
+        src="/art/butterflies/butterfly-3-lime.svg"
+        alt=""
+        width={320}
+        height={400}
+        className="pointer-events-none absolute -top-12 -right-12 h-48 w-auto md:-top-20 md:-right-20 md:h-80 lg:-top-32 lg:-right-32 lg:h-112"
+        aria-hidden="true"
+      />
+      <Image
+        src="/art/butterflies/butterfly-2-lime.svg"
+        alt=""
+        width={320}
+        height={400}
+        className="pointer-events-none absolute -bottom-8 -left-8 h-48 w-auto md:-bottom-12 md:-left-12 md:h-80 lg:-bottom-16 lg:-left-16 lg:h-112"
+        aria-hidden="true"
+      />
+      <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="font-heading text-sand text-center text-3xl sm:text-4xl md:text-5xl">
           The Experience
         </h2>
@@ -47,25 +63,38 @@ export function HomeGallery() {
                 stopOnMouseEnter: true,
               }),
             ]}
-            className="grid grid-cols-[max-content_1fr_max-content] items-center gap-4"
+            className="flex flex-wrap items-center gap-4"
           >
-            <CarouselPrevious className="border-sand/30 text-sand hover:bg-sand hover:text-forest static translate-y-0 bg-transparent disabled:opacity-30" />
-            <CarouselContent className="box-shadow-sand/20 shadow-2xl">
-              {images.map((image, i) => (
-                <CarouselItem key={i} className="basis-full">
-                  <div className="bg-sand/10 relative aspect-video overflow-hidden rounded-lg">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1152px) 100vw, 1152px"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselNext className="border-sand/30 text-sand hover:bg-sand hover:text-forest static translate-y-0 bg-transparent disabled:opacity-30" />
+            <div className="hidden md:inline-flex">
+              <CarouselPrevious className="text-lime border-lime static translate-y-0" />
+            </div>
+
+            <div className="w-full md:w-auto md:flex-1">
+              <CarouselContent>
+                {images.map((image, i) => (
+                  <CarouselItem key={i} className="basis-full">
+                    <div className="bg-sand/10 relative aspect-video overflow-hidden rounded-lg">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1152px) 100vw, 1152px"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </div>
+
+            <div className="hidden md:inline-flex">
+              <CarouselNext className="text-lime border-lime static translate-y-0" />
+            </div>
+
+            <div className="flex w-full items-center justify-center gap-4 md:hidden">
+              <CarouselPrevious className="text-lime border-lime static translate-y-0" />
+              <CarouselNext className="text-lime border-lime static translate-y-0" />
+            </div>
           </Carousel>
         </div>
       </div>
