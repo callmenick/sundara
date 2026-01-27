@@ -17,6 +17,7 @@ interface TimeLeft {
 
 interface CountdownProps {
   targetDate: Date
+  variant?: 'dark' | 'light'
 }
 
 function calculateTimeLeft(targetDate: Date): TimeLeft {
@@ -34,15 +35,30 @@ function calculateTimeLeft(targetDate: Date): TimeLeft {
   return { days, hours, minutes, seconds }
 }
 
-function TimeUnit({ value, label }: { value: number; label: string }) {
+interface TimeUnitProps {
+  value: number
+  label: string
+  variant: 'dark' | 'light'
+}
+
+function TimeUnit({ value, label, variant }: TimeUnitProps) {
+  const boxClasses =
+    variant === 'light' ? 'bg-sand/80 border-forest/30' : 'bg-forest/80 border-sand/30'
+
+  const valueClasses = variant === 'light' ? 'text-forest' : 'text-sand'
+
+  const labelClasses = variant === 'light' ? 'text-forest/60' : 'text-sand/60'
+
   return (
-    <div className="flex flex-col items-center">
-      <div className="border-sand/30 bg-sand/10 flex size-16 items-center justify-center rounded-xl border-2 backdrop-blur-sm sm:size-20 md:size-24">
-        <span className="font-heading text-sand text-3xl sm:text-4xl md:text-5xl">
-          {value.toString().padStart(2, '0')}
-        </span>
-      </div>
-      <span className="font-heading text-amber mt-2 text-xs tracking-wider uppercase sm:text-sm">
+    <div
+      className={`${boxClasses} flex size-16 flex-col items-center justify-center rounded-xl border-2 backdrop-blur-sm sm:size-20 md:size-24`}
+    >
+      <span className={`font-heading ${valueClasses} text-2xl sm:text-3xl md:text-4xl`}>
+        {value.toString().padStart(2, '0')}
+      </span>
+      <span
+        className={`font-heading ${labelClasses} text-[10px] tracking-wider uppercase sm:text-xs`}
+      >
         {label}
       </span>
     </div>
@@ -57,7 +73,7 @@ function useIsClient() {
   )
 }
 
-export function Countdown({ targetDate }: CountdownProps) {
+export function Countdown({ targetDate, variant = 'dark' }: CountdownProps) {
   const isClient = useIsClient()
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calculateTimeLeft(targetDate))
 
@@ -72,20 +88,20 @@ export function Countdown({ targetDate }: CountdownProps) {
   if (!isClient) {
     return (
       <div className="flex gap-3 sm:gap-4 md:gap-6">
-        <TimeUnit value={0} label="Days" />
-        <TimeUnit value={0} label="Hours" />
-        <TimeUnit value={0} label="Minutes" />
-        <TimeUnit value={0} label="Seconds" />
+        <TimeUnit value={0} label="Days" variant={variant} />
+        <TimeUnit value={0} label="Hours" variant={variant} />
+        <TimeUnit value={0} label="Minutes" variant={variant} />
+        <TimeUnit value={0} label="Seconds" variant={variant} />
       </div>
     )
   }
 
   return (
     <div className="flex gap-3 sm:gap-4 md:gap-6">
-      <TimeUnit value={timeLeft.days} label="Days" />
-      <TimeUnit value={timeLeft.hours} label="Hours" />
-      <TimeUnit value={timeLeft.minutes} label="Minutes" />
-      <TimeUnit value={timeLeft.seconds} label="Seconds" />
+      <TimeUnit value={timeLeft.days} label="Days" variant={variant} />
+      <TimeUnit value={timeLeft.hours} label="Hours" variant={variant} />
+      <TimeUnit value={timeLeft.minutes} label="Minutes" variant={variant} />
+      <TimeUnit value={timeLeft.seconds} label="Seconds" variant={variant} />
     </div>
   )
 }

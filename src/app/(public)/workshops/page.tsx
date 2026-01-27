@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import { ComingSoon } from '@/components/coming-soon'
+import { PageHero } from '@/components/page-hero'
+import { NewsletterSignup } from '@/components/newsletter-signup'
+import { Separator } from '@/components/ui/separator'
 
 export const metadata: Metadata = {
   title: 'Workshops',
@@ -8,9 +11,15 @@ export const metadata: Metadata = {
 
 export default function WorkshopsPage() {
   return (
-    <ComingSoon
-      title="Workshops"
-      description="Our workshop schedule is being curated. Expect yoga, art, wellness, and community experiences."
-    />
+    <>
+      <PageHero>
+        <ComingSoon
+          title="Workshops"
+          description="Our workshop schedule is being curated. Expect yoga, art, wellness, and community experiences."
+        />
+      </PageHero>
+      <Separator className="bg-forest/10" />
+      <NewsletterSignup />
+    </>
   )
 }

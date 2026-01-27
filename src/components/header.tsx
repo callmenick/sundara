@@ -20,9 +20,9 @@ export function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-forest/90 fixed top-0 z-50 w-full backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-display text-sand text-2xl uppercase">
+    <header className="bg-sand/90 fixed top-0 z-50 w-full backdrop-blur-sm">
+      <div className="mx-auto flex h-(--header-height) max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="text-display text-forest text-2xl uppercase">
           {FESTIVAL.name}
         </Link>
 
@@ -31,7 +31,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sand/80 hover:text-sand text-sm font-medium transition-colors"
+              className="text-forest/80 hover:text-forest text-sm font-medium transition-colors"
             >
               {link.label}
             </Link>
@@ -49,17 +49,17 @@ export function Header() {
                 variant="ghost"
                 size="icon"
                 aria-label="Open menu"
-                className="text-sand hover:bg-sand/10 hover:text-sand"
+                className="text-forest hover:bg-forest/10 hover:text-forest"
               >
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="border-l-forest bg-forest w-72">
+            <SheetContent side="right" className="border-l-sand bg-sand w-72">
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col gap-6 pt-6">
                 <Link
                   href="/"
-                  className="text-display text-sand text-2xl uppercase"
+                  className="text-display text-forest text-2xl uppercase"
                   onClick={() => setOpen(false)}
                 >
                   Sundara
@@ -69,7 +69,7 @@ export function Header() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="text-sand/80 hover:text-sand text-base font-medium transition-colors"
+                      className="text-forest/80 hover:text-forest text-base font-medium transition-colors"
                       onClick={() => setOpen(false)}
                     >
                       {link.label}
