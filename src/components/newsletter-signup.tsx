@@ -1,23 +1,31 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { subscribe } from '@/domains/subscribers/actions'
 
 export function NewsletterSignup() {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!email) return
+    const form = e.currentTarget
+    const formData = new FormData(form)
 
     setStatus('loading')
-    // TODO: Implement newsletter signup API
-    // For now, simulate success
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const result = await subscribe(formData)
+
+    if ('error' in result) {
+      toast.error(result.error)
+      setStatus('idle')
+      return
+    }
+
+    toast.success("You're on the list!")
     setStatus('success')
-    setEmail('')
+    form.reset()
   }
 
   return (
@@ -36,9 +44,8 @@ export function NewsletterSignup() {
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Input
               type="email"
+              name="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
               className="border-forest/30 bg-forest/10 text-forest placeholder:text-forest/50 focus-visible:ring-forest/50 flex-1"
             />

@@ -111,6 +111,47 @@ export type Database = {
         }
         Relationships: []
       }
+      subscribers: {
+        Row: {
+          edition_id: string | null
+          email: string
+          id: string
+          metadata: Json | null
+          resend_contact_id: string | null
+          source: string
+          subscribed_at: string
+          unsubscribed_at: string | null
+        }
+        Insert: {
+          edition_id?: string | null
+          email: string
+          id?: string
+          metadata?: Json | null
+          resend_contact_id?: string | null
+          source?: string
+          subscribed_at?: string
+          unsubscribed_at?: string | null
+        }
+        Update: {
+          edition_id?: string | null
+          email?: string
+          id?: string
+          metadata?: Json | null
+          resend_contact_id?: string | null
+          source?: string
+          subscribed_at?: string
+          unsubscribed_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'subscribers_edition_id_fkey'
+            columns: ['edition_id']
+            isOneToOne: false
+            referencedRelation: 'editions'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
